@@ -4,12 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>COUNTER</title>
+    <link href="styles.css" rel="stylesheet">
 </head>
 <body>
     <h1>Counter!</h1>
-    <button id="increment">Click me to increment count!</button>
-    <button id="reset">Click me to reset count!</button>
-    <button id="decrement">Click me to decrement count!</button>
-    <h1 id="cntdisplay"></h1>
+    <div class="main-ctr">
+    <div id="cntdisplay">0</div>
+    <div class="buttonsMenu">
+    <button id="increment" class="btn">Click me to increment count!</button>
+    <button id="reset" class="btn">Click me to reset count!</button>
+    <button id="decrement" class="btn">Click me to decrement count!</button>
+    </div>
+    </div>
+    
+    <script src="scripts.js"></script>
 </body>
 </html>

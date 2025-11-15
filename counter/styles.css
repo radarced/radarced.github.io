@@ -1,0 +1,68 @@
+/*<h1>Counter!</h1>
+    <div class="main-ctr">
+        <div id="cntdisplay">0</div>
+    <div class="buttonsMenu">
+    <button id="increment">Click me to increment count!</button>
+    <button id="reset">Click me to reset count!</button>
+    <button id="decrement">Click me to decrement count!</button>
+    </div>
+    </div>*/
+*
+{
+    box-sizing: border-box;
+    margin : 0;
+    padding : 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body
+{
+    display: flex;
+    flex-direction: column;
+    height : 100vh;
+    flex-wrap: nowrap;
+    justify-items : center;
+    align-items: center;
+    background-color : #4f4e4d;
+}
+
+h1
+{
+    color  :white;
+    text-align: center;
+}
+
+.main-ctr
+{
+    display : flex;
+    flex-direction: row;
+    width : 100%;
+    height : 80%;
+}
+
+#cntdisplay
+{
+    font-size : 3em;
+    flex : 3;
+    display  :flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.buttonsMenu
+{
+    flex : 2;
+    display: flex;
+    background-color : #383634;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.btn
+{
+    border : none;
+    border-radius : 0.5em;
+    background-color : greenyellow;
+    color : black;
+    padding : 1em;
+}
