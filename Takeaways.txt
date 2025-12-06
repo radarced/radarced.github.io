@@ -1,0 +1,6 @@
+add attributes to your elements as every element is an object and you can access that using 
+JAVASCRIPT!;
+make 10 thousand globals BUT! make them as object JAVASCRIPT and objects are one!;
+stop enforcing so much procedural programming let yourself make maps to find such conditions
+use JAVASCRIPT the way its intended!;
+
