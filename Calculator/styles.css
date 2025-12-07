@@ -1,0 +1,101 @@
+*
+{
+    margin : 0;
+    padding : 0;
+    box-sizing: border-box;
+}
+
+body
+{
+    display : flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+    background-color: #474746;
+    width : 100vw;
+    height : 100vh;
+}
+#main-ctr
+{
+    width : 60%;
+    margin-top : 0.2rem;
+    padding : 0.2rem;
+    height : 80%;
+    display : flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    background-color: aquamarine;
+}
+#TextBox
+{
+    background-color : whitesmoke;
+    flex-grow : 1;
+    font-size : 2rem;
+    padding : 0.2rem;
+    overflow : auto;
+    text-align: end;
+    flex-shrink : 10;
+    flex-basis : 100%;
+    height : 20%;
+}
+#small-ctr /* small-ctr and Textbox are siblings to main-ctr*/
+{
+    /* background-color : black; */
+    flex-grow: 2;
+    margin-top : 0.1rem;
+    height: inherit;
+    flex-shrink : 1;
+    flex-basis: 100%;
+    display: flex;
+}
+#NumbersBox
+{
+    background-color: pink;
+    flex-grow : 1;
+    flex-shrink : 1;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    flex-basis : 70%;
+}
+#OperatorsBox
+{
+     background-color: orange;
+    flex-grow : 1;
+    display: flex;
+    flex-direction: column;
+    flex-shrink : 1;
+    flex-basis : 30%;   
+}
+
+.Operator
+{
+    flex : 1;
+    flex-basis: 100%;
+    background-color: bisque;
+    margin: 0.2rem; 
+    text-align: center;
+    font-size : 2rem;
+    padding : 0.2rem;   
+}
+.Number
+{
+    flex :1;
+    flex-basis: 33%;
+    padding : 0.2rem;
+    background-color: yellowgreen;
+    text-align: center;
+    font-size : 3rem;
+    padding : 0.2rem;
+    margin : 0.1rem;
+}
+.Number:hover
+{
+    background-color: beige;
+    color : blue;
+}
+.Operator:hover
+{
+    background-color: rgb(237, 212, 111);
+}
