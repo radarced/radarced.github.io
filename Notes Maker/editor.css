@@ -1,0 +1,25 @@
+*
+{
+    margin : 0px;
+    padding : 0px;
+    box-sizing: border-box;
+}
+.mainSection
+{
+    display: flex;
+    min-height: 80vh;
+    width : 100%;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+.editorSection
+{
+    flex : 1;
+    min-width: 20%;
+}
+.displaySection
+{
+    overflow-wrap: break-word;
+    max-width: 80%;
+    flex : 2;
+}
