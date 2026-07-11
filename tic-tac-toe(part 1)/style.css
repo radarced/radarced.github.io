@@ -1,0 +1,104 @@
+*
+{
+    box-sizing: border-box;
+    padding : 0;
+    margin : 0;
+}
+
+body
+{
+    font-family : 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: grey;
+    display: flex;
+    position : relative;
+    flex-flow : column nowrap;
+    align-items: center;
+}
+
+.Ctr1
+{
+    margin-top : 1.2em;
+    display : flex;
+    padding : 0.4em;
+    width : 500px;  
+    border : 4px rgb(155,155,155) solid;
+    justify-content: space-between;
+    align-items: center; 
+}
+
+.play
+{
+    border : none;
+    font-size : 1.5em;
+    background-color : whitesmoke;
+    padding : 0.3em 0.7em;
+    border-radius : 5px;
+}
+
+.turn
+{
+    font-size : 1.5em;
+    color : rgb(77,77,77);
+    font-weight: 700;
+}
+/* i think its just alot better if i let the row elements dictate the size  */
+.gameCtr
+{
+        border : 4px rgb(155,155,155) solid;
+    display : flex;
+    margin : 0.4em;
+    flex-flow : column nowrap;
+}
+/* rows and then boxes not just 9 boxes */
+
+.row
+{
+    display : flex;
+    flex-flow : row nowrap;
+}
+
+.box
+{
+    margin : 0.4em;
+    border : 5px rgb(93,93,93) solid;
+    width : 150px;
+    display : flex;
+    justify-content: center;
+    align-items: center;
+    color : seashell;
+    font-size : 1.8em;
+    height : 150px;
+}
+
+.box:hover
+{
+    background-color : rgba(92, 92, 92, 0.202);
+}
+
+.scoreCtr
+{
+    position : absolute;
+    top : 50%;
+    left : 0;
+    width : 100%;
+    display : flex;
+    flex-flow : row nowrap;
+    justify-content: space-between;
+}
+
+.score 
+{
+    font-size : 1.3em;
+    font-weight : 500;
+    margin : 0px 0.8em;
+}
+
+.playerScore
+{
+    color : #ffb6c1;
+}
+
+.computerScore 
+{
+    color : blue;
+}
