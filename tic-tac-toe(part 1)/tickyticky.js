@@ -27,7 +27,7 @@ function startGame()
     }
     gameStarted = true;
     // compute the first turn;
-    let randomTurn = Math.floor(Math.random() * 1) + 1; // (1,2)
+    let randomTurn = Math.floor(Math.random() * 2) + 1; // (1,2)
     turn = (randomTurn === 1) ? "player" : "player2";
     turnSymbol = (turn === "player") ? 'X' : 'O';
     

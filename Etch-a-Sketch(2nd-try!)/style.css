@@ -1,0 +1,49 @@
+*
+{
+    box-sizing: border-box;
+    padding : 0;
+    margin : 0;
+}
+
+
+body
+{
+    background-color : rgb(190,190,190);
+
+    display : flex;
+    flex-flow : column nowrap;
+    justify-content: center;
+    align-items : center;
+}
+
+.container
+{
+    background-color: rgb(239,239,239);
+    display : flex;
+    flex-flow : column nowrap;
+    width :500px;
+    height :500px;
+}
+
+.row
+{
+    flex : 1;
+    display: flex;
+}
+
+.box
+{
+    border-right : 2px solid pink;
+    border-bottom: 2px solid pink;
+    flex : 1 1 0;
+}
+
+.sizeChanger
+{
+    border-radius : 10px;
+    padding: 0.6em;
+    margin-top : 0.7em;
+    background-color: dimgrey;
+    color : white;
+    font-size : 1.2em;  
+}
