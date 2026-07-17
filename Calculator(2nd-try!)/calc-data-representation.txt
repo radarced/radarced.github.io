@@ -1,0 +1,58 @@
+(num1,operator,num2) = > (number,string,number) = > defaultValues ( '','','' );
+
+so all boxes that can mess with ( num1,operator,num2 ) will be divided into 
+3 types :
+numbers,
+operators,
+dot,
+and also lets just include clearAll,clear
+
+and their values like what they actually do as clicking the 9th box / element would
+have the result of 9 added to num1 or num2 supposedly ; that value would be accessed
+through textContent and their types will be in their className .
+
+they will all have the class of interactable so that in the code it will be able to define
+event listeners on just one node and check for this class .
+
+so the checks in the event listener would be something like :
+- check className === box.
+- check className === types.
+- check currentPointer and each case.
+
+also there'll be a pointer variable which identifies which input variable we're on
+1 - > num1;
+2 - > operator;
+3 - > num2;
+
+postulate 1 : operators cannnot be shown on the big display box and also cannot be 
+changed once theyre chosen.
+
+the output display box will have two divs one small one big.
+the small one would start showing the expression after pointer is more than 1 ( meaning operator
++ num2 ) .
+the small one should show the result if we press the = sign on pointer 3 .
+the small one should show the expression normall if the operators are pressed on pointer 3 .
+
+there should be a completely seperate evaluate function which does the final computation of
+the expression and assigns the value to the result and then render it .
+
+IF the user enters a mathematically invalid expression like "4 + = " then we return 
+"syntax error and return to the previous position ".
+
+every single button will accordingly to the state and work on the state ( pointer < - this 
+is what the entire functionality of my program with latch off of )
+
+OK SO THIS PROJECT HAS taught me that a project catgeorically really only has 3 functions and :
+
+input()
+update()
+render()
+
+and each program can be broken down into 3 sections :
+
+input. // the data user gives and then the state is updated in terms of the input.
+state. // the current state of your program in memory.
+render. // renders output on screen based upon the state.
+
+this way the different types of functionalities are locked away in their own systems and 
+it makes it so much simpler to use and update state when it is in their own box than otherwise.
