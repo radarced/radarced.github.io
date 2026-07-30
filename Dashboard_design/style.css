@@ -1,0 +1,255 @@
+*
+{
+    box-sizing : border-box;
+    padding : 0;
+    margin : 0;
+}
+
+@font-face {
+    font-family: "Gemanium";
+    src: url(./assets/fonts/GermaniaOne-Regular.ttf) format("font/ttf");
+}
+
+:root
+{
+    --big-svg-size : 75px;
+    --small-svg-size : 35px;
+}
+
+body
+{
+    height : 100vh;
+    background-color : rgb(225, 242, 255);
+    display : grid;
+    font-family : system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    grid-template-columns : 1fr 4fr;
+    grid-template-rows : clamp(175px,20%,18rem) 1fr;
+    grid-template-areas : "sidebar header" "sidebar mainContainer";
+}
+
+.big-svgs
+{
+    width : 75px;
+    height : 75px;
+}
+
+.small-svgs
+{
+    width : var(--small-svg-size);
+    height : var(--small-svg-size);
+}
+
+.header
+{
+    grid-area : header;
+}
+
+.sidebar
+{
+    grid-area : sidebar;
+    background-color : rgb(106, 106, 226);
+    padding : 15px;
+    color : white;
+}
+
+.svgLumpWrapper
+{
+    display : flex;
+    align-items: center;
+    color  :white;
+}
+
+.icon-text.text-big
+{
+    font-size : 1.5rem;
+    font-family : "Germanium";
+}
+/* fonts are added in as well! */
+.icon-text.text-small
+{
+    font-size : 1.2rem;
+}
+
+.icon-text
+{
+    margin-left : 0.8rem;
+}
+
+.mainContainer
+{
+    grid-area : mainContainer;
+}
+
+.margin-top1
+{
+    margin-top : 2rem;
+}
+
+.header
+{
+    display : flex;
+    flex-flow : column nowrap;
+    padding : 10px;
+    box-shadow : 0px 0px 10px rgba(0,0,0,0.5);
+}
+
+.searchMenu
+{
+    display : flex;
+    flex-flow : row nowrap;
+    align-items: center;
+    padding : 10px;
+    gap : 12px;
+}
+
+.searchMenu button
+{
+    border: none;
+    background : transparent;
+}
+
+.header > nav
+{
+    display: flex;
+    padding : 10px;
+    flex-flow : row nowrap;
+    align-items: center;
+}
+
+#searchBar
+{
+    border-radius : 5px;
+    flex : 0 1 50%;
+    background-color : rgb(125, 125, 125);
+    border : none;
+    height : 50%;
+    color : white;
+    appearance: none;
+    padding : 5px;
+}
+
+#b-p-text-1
+{
+    font-size : 0.9rem;
+}
+
+#big-profile-text
+{
+    font-size : 1.3rem;
+}
+
+.ProjectInteractables
+{
+    padding : 0.8rem;
+    margin : 5px 5px 5px 0px; 
+    border-radius : 5px;
+}
+
+
+.margin-left-auto
+{
+    margin-left : auto;
+}
+
+.mainContainer
+{
+    padding : 10px;
+    display: grid;
+    grid-template-columns : 3fr 1fr;
+    grid-template-rows : 1.2fr 1fr;
+    grid-template-areas : "Projects Announcements" "Projects Trending";
+    gap : 12px;
+}
+
+.Projects 
+{
+    grid-area : Projects;
+}
+
+.ProjectsContainer
+{
+    display : grid;
+    margin-top : 1rem;
+    grid-template-columns : repeat(auto-fit,minmax(250px,1fr));
+    grid-template-rows : 1fr 1fr 1fr;
+    grid-auto-rows : clamp(200px,30%,300px);
+    gap : 1.3rem;
+    overflow : auto;
+}
+
+.Project 
+{
+    background-color : white;
+    padding : 10px;
+    border-radius : 5px;
+    border-left : orange 10px solid;
+}
+
+.Project-icons
+{
+    margin-top : 0.8rem;
+    display : flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap : 8px;
+}
+
+.Announcements
+{
+    grid-area : Announcements;
+}
+
+.Trending
+{
+    grid-area : Trending;
+}
+
+.Announcement
+{
+    display : flex;
+    flex-flow : column nowrap;
+    border-bottom : 2px solid grey;
+    gap : 10px;
+}
+
+.Announcement:last-child
+{
+    border : none;
+}
+
+.Announcements-Ctr
+{
+    background-color: white;
+    margin-top : 1rem;
+    padding : 10px;
+}
+
+.Trending-Ctr
+{
+    background-color: white;
+    margin-top : 1rem;
+    padding : 10px;
+}
+
+.TrendingEl
+{
+    display : flex;
+    flex-flow : row nowrap;
+    align-items: center;
+}
+
+.trendingProfile
+{
+    flex : 1 1 20%;
+    height : auto;
+}
+
+.TrendingTextWrapper
+{
+    flex : 1 1 60%;
+}
+
+.trending-text1
+{
+    font-weight : 650;
+}
