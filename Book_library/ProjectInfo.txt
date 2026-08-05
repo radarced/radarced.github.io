@@ -1,0 +1,6 @@
+the scope of this project is basically a todoList just emphasize objects and prototypes ( the three premises ) usage .
+the new button displays a modal specifying all 4 constituents of the book object .
+
+the representation of data will be an array of book Objects . 
+
+each book object includes 4 properties : author , title , pages , read . 
