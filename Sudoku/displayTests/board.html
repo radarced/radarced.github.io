@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>testBOard</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+        <div class="main-container game-menu">
+            <div class="Board">
+
+            </div>
+            <div class="inputContainer">
+
+            </div>
+            <div class="interactablesContainer">
+                <button class="generate interactable">Generate new</button>
+                <button class="MenuBtn interactable">Back to Menu</button>
+                <button class="solve interactable">Solve</button>
+            </div>
+        </div>  
+    <script>
+        // creating the board
+    let Board = document.querySelector(".Board");
+        for(let i = 1;i< 10;i++)
+    {
+        let Badge = document.createElement("div");
+        Badge.className = "Badge";
+        Badge.dataset.badge_number = i;
+        for(let j = 1;j<10;j++)
+    {
+        let cell = document.createElement("div");
+        cell.className = "Cell";
+        cell.dataset.cell_number = j;
+        Badge.appendChild(cell);
+    }
+    Board.appendChild(Badge);
+    }
+// populating the InputContainer.
+let InputCtr = document.querySelector(".inputContainer");
+
+let box = document.createElement("div");
+box.className = "box";
+box.innerHTML = "&nbsp";
+box.dataset.char = "";
+
+InputCtr.appendChild(box);
+
+for(let i = 1;i<=9;i++)
+{
+    let box = document.createElement("div");
+    box.className = "box";
+    box.innerHTML = i;
+    box.dataset.char = i;
+
+    InputCtr.appendChild(box);
+}
+
+    
+    </script>
+</body>
+</html>

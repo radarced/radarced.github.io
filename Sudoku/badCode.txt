@@ -1,0 +1,22 @@
+switch(state_toSwitch)
+        { // a bunch of cases and for each one add or remove the elements.
+            case displayStates.game :
+            // curr_displayState is the old state ; state_toSwitch is the new state.
+
+            elementsCtr.removeElements(curr_displayState); // if menu - > game then remove menu ELs ; if end - > game then remove end Elements
+            elementsCtr.appendElements(state_toSwitch);
+
+            break;
+            case displayStates.menu :
+
+            elementsCtr.removeElements(curr_displayState); // if menu - > game then remove menu ELs ; if end - > game then remove end Elements
+            elementsCtr.appendElements(state_toSwitch);            
+
+            break;
+            case displayStates.end :
+
+            elementsCtr.removeElements(curr_displayState); // if menu - > game then remove menu ELs ; if end - > game then remove end Elements
+            elementsCtr.appendElements(state_toSwitch);
+            
+            break;
+        } <- RenderManager::updateDisplay();

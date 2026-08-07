@@ -1,0 +1,22 @@
+this project will include a solver and a generator and decent architecture .
+
+ill divide the project into different phases :
+currently i just need to make the architecture and the game actually playable .
+UI logic :
+- there will be two displayStates MenuState and GameState
+- MenuState will include a playGame button + previous Times . 
+- GameState will include the actual board the options available on the board and notes .
+^^ the last two functionalities come wayyy later .
+
+for now MVP ( minimum viable project ) :
+both states are working and the board is being displayed for now with a predefined sudoku board 
+and you can actually interact with the cells ( no validation for now ).
+
+
+
+
+after that you have to create the solver and attach it in the GameState Display as an 
+option for the user. 
+
+then the generator .
+then the difficulty and polishing .
