@@ -50,7 +50,6 @@ function displayModal()
         return ;
     }
     // Create the Modal - > append the constituents - > append the Modal
-    console.log(appState.form);
     EL_references.body.appendChild(appState.form);
 }
 
@@ -91,7 +90,6 @@ function createBook(formattedVals)
 {
     let new_book = new Book(formattedVals);
     Books.push(new_book);   
-    console.log(Books);
 }
 
 function Book(inputData)
@@ -113,7 +111,6 @@ Book.prototype._read = function()
 function readBook(id)
 {
     let targetBook = Books.find((el)=>el.id === id);
-    console.log(targetBook);
     targetBook._read();
     displayBooks();
 }
@@ -121,7 +118,6 @@ function readBook(id)
 function removeBook(id)
 {
     let targetIndex = Books.findIndex((el)=>el.id === id);
-    console.log(targetIndex,Books,id);
     if(targetIndex > -1)
     { // meaning it exists in the container < - just to be safe 
         Books.splice(targetIndex,1);
