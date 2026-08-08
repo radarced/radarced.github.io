@@ -20,3 +20,22 @@ option for the user.
 
 then the generator .
 then the difficulty and polishing .
+
+
+from (i,j) where both are from the range {0,8};
+figure out which badge we're on;
+
+row wise check is done from i;
+column wise check is doen from j;
+combined we'll get 1 badge ( the one that we're looking for )
+
+0 - > 0
+1 - > 0
+2 - > 0
+3 - > 1
+4 - > 1
+5 - > 1
+6 - > 2
+7 - > 2
+8 - > 2
+

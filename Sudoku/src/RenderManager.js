@@ -2,7 +2,7 @@ const displayStates = {
     menu : "menuState",
     game : "gameState",
     end : "endMenuState",
-} // the possible displayStates
+} // the possible displayStates ; now that i think about it renderState , gameState will be the same across all "states" so its better to be generic cuz its just redundant to hold 2 different variables that tell the same thing .
 
 import elementsCtr from "./ElementsContainer.js";
 
@@ -10,10 +10,47 @@ let RenderManager = (()=>{
 
     let curr_displayState = displayStates.menu; // uiState variable  3 vals currently (menuState,gameState,endMenuState)
 
-    function displayGame(gameState)
-    {
 
+    function displayBoard(gameState)
+    {
+    
+        let board = gameState.board;
+
+        let boardArray = board.getBoard();
+        let N_of_rows_cols = board.getSize();
+
+        for(let i = 0;i < 9;i++)
+        { // i = current_row
+            for(let j = 0;j < 9;j++)
+            { // j = current_col
+
+                let currCell = boardArray[i][j];
+                let currentCell = elementsCtr.getCell(i,j,N_of_rows_cols);
+                currentCell.innerText = currCell;
+
+            }
+        }
     }   
+
+    function displayInputCtr(gameState)
+    {
+        let inputChoice = gameState.inputChoice;
+        // loop over the inputCtr children find the one whose dataset.char is inputChoice .
+        // make that active and remove it from everyone else .
+
+        let inputs = elementsCtr.getGameElements().inputContainer.children; // inputs variable is an object instance of HTMLColleciton 
+        for(let i = 0;i < inputs.length;i++)
+        {
+            let currentInput = inputs[i];
+            if(currentInput.dataset.char === inputChoice)
+            {
+                currentInput.classList.add("active");
+            }else
+            {
+                currentInput.classList.remove("active");
+            }
+        }
+    }
 
     function displayMenu(menuState)
     {
@@ -33,6 +70,10 @@ let RenderManager = (()=>{
 
     elementsCtr.removeElements(curr_displayState); // e.g : if menu - > game then remove menu ELs ; if end - > game then remove end Elements
     elementsCtr.appendElements(state_toSwitch);    
+        if(state_toSwitch === displayStates.menu)
+        {
+            elementsCtr.removeAllActiveClasses();
+        }
 
         curr_displayState = state_toSwitch;
     }
@@ -43,7 +84,7 @@ let RenderManager = (()=>{
     }
 
 
-    return {displayGame,displayMenu,displayEndMenu,updateDisplay,getDisplay};
+    return {displayBoard,displayMenu,displayEndMenu,updateDisplay,getDisplay,displayInputCtr};
 
 })();
 

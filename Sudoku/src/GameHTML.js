@@ -1,4 +1,4 @@
-let GameHTML = `<div class="Board">
+let GameHTML = `<div class="board">
 
             </div>
             <div class="inputContainer">

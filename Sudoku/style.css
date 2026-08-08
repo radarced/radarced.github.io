@@ -64,7 +64,7 @@ body
     gap : 12px;
 }
 
-.Board
+.board
 {
     margin-top : 1rem;
     grid-area : board;
@@ -87,12 +87,15 @@ body
 .Cell
 {
     background-color : #adacac;
+    display : flex;
+    justify-content: center;
+    align-items: center;
+    font-size : 1.2rem;
 }
 
 .Cell:hover
 {
     background-color : rgba(245, 245, 245, 0.512);
-    color : rgba(245, 245, 245, 0.211);
 }
 
 .inputContainer
@@ -104,12 +107,12 @@ body
     gap : 6px;
 }
 
-.box:first-child
+.input:first-child
 {
     background-color : #adacac2d;
 }
 
-.inputContainer > .box 
+.inputContainer > .input 
 {
     background-color : #adacacbb;
     text-align: center;
@@ -118,13 +121,13 @@ body
     padding : 0.5rem;
 }
 
-.inputContainer > .box:hover
+.inputContainer > .input:hover
 {
     background-color : rgba(245, 245, 245, 0.512);
     color : whitesmoke;
 }
 
-.inputContainer > .box.active
+.inputContainer > .input.active
 {
     background-color : lightgreen;
 }
