@@ -60,6 +60,8 @@ let EventsHandler = (()=>{
             let col = eventTarget.dataset.col;
 
             let clickOutcome = GameManager.cellClick(row,col); // outcome Range : {"visualize","reset visualizion","success","invalid choice","win"}
+            
+            console.log(GameManager.getState().board.getBoard());
 
             switch(clickOutcome)
             {
@@ -74,13 +76,13 @@ let EventsHandler = (()=>{
 
                 break;
                 case "valid" :
-
+                    RenderManager.displayBoard(GameManager.getState().board)
                 break;
                 case "invalid" :
 
                 break;
                 case "win" :
-
+                    RenderManager.displayBoard(GameManager.getState().board)
                 break;
 
                 default :
@@ -118,18 +120,28 @@ let EventsHandler = (()=>{
     // last
     function generateNew()
     {
-
+        GameManager.updateState(displayStates.game);
+        GameManager.startGame();
+        
+        displayGame();
     }
 
     // 2nd last
     function solve()
     {
+        if(!GameManager.inGame())
+        {
+            return;
+        }
+        GameManager.solveBoard(RenderManager.getDisplayBoardCallback());
+        GameManager.updateState(displayStates.end);
         
+        displayGame();
     }
 
     function displayGame()
     {
-        RenderManager.displayBoard(GameManager.getState());
+        RenderManager.displayBoard(GameManager.getState().board);
         RenderManager.displayInputCtr(GameManager.getState());
     }
 

@@ -26,6 +26,10 @@ let GameManager = (()=>{
         { // if we're switching to something NOT gameState then game is not running so append it to the var
             gameRunning = false;
         }
+        if(state_toSwitch === displayStates.menu)
+        {
+            delete gameState.board;
+        }
     }
 
     function getState()
@@ -35,16 +39,11 @@ let GameManager = (()=>{
 
     function startGame()
     {
-        console.log("created a random board");
         gameState.board = createBoard();
         gameState.inputChoice = ' ';
 
         // gameRunning is the variable which tells us whether the game is Running or not ;
         gameRunning = true;
-
-        console.log("initialized the gameState");
-        
-        console.log("added the event handlers to each cell or the entire board and then event delegate ");
     }
 
     // 4 outcomes : valid_number,invalid_number,nothing,numberVisualizer
@@ -62,17 +61,30 @@ let GameManager = (()=>{
             return "reset visualizion";
         }
 
-        let valid = gameState.board.validChoice(row,col,gameState.inputChoice);
+        let valid = gameState.board.validChoice(+row,+col,gameState.inputChoice);
         
         if(valid)
         {
             // plot - > check Win - > gameRunning - > return "win" 
             gameState.board.plot(row,col,gameState.inputChoice);
+            
+            // if the board is completed
+            if(checkWin())
+            {
+                gameRunning = false;
+                return "win";
+            }
+
             return "valid";
         }else
         { // do a little animation
             return "invalid";
         }
+    }
+
+    function solveBoard(displayFn)
+    {
+        gameState.board.solveBoard(displayFn);
     }
 
     function reset()
@@ -90,8 +102,13 @@ let GameManager = (()=>{
     {
         return gameRunning;
     }
+    
+    function checkWin()
+    { 
+        return gameState.board.isFilled();
+    }
 
-    return {updateState,getState,startGame,inGame,updateInputChoice,cellClick};
+    return {updateState,getState,startGame,inGame,updateInputChoice,cellClick,solveBoard};
 })();
 
 export default GameManager;

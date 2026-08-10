@@ -11,10 +11,8 @@ let RenderManager = (()=>{
     let curr_displayState = displayStates.menu; // uiState variable  3 vals currently (menuState,gameState,endMenuState)
 
 
-    function displayBoard(gameState)
+    let displayBoard =  function(board)
     {
-    
-        let board = gameState.board;
 
         let boardArray = board.getBoard();
         let N_of_rows_cols = board.getSize();
@@ -83,8 +81,15 @@ let RenderManager = (()=>{
         return displayState;
     }
 
+    function getDisplayBoardCallback()
+    {
+        return displayBoard;
+    }
 
-    return {displayBoard,displayMenu,displayEndMenu,updateDisplay,getDisplay,displayInputCtr};
+
+    return {displayBoard,displayMenu,displayEndMenu,updateDisplay,getDisplay,displayInputCtr
+        ,getDisplayBoardCallback
+    };
 
 })();
 

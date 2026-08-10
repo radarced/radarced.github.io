@@ -39,3 +39,11 @@ combined we'll get 1 badge ( the one that we're looking for )
 7 - > 2
 8 - > 2
 
+
+the event handler essentially only handles these events :
+- cell click ;
+- input box click ;
+- menu click ;
+- generate click ;
+- solve click ;
+
