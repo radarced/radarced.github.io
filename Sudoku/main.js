@@ -61,13 +61,11 @@ let EventsHandler = (()=>{
 
             let clickOutcome = GameManager.cellClick(row,col); // outcome Range : {"visualize","reset visualizion","success","invalid choice","win"}
             
-            console.log(GameManager.getState().board.getBoard());
-
             switch(clickOutcome)
             {
                 case "visualize" :
 
-                console.log("no visualization feature ");
+                console.log("visualization feature ");
 
                 break;
                 case "reset visualizion" :

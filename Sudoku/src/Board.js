@@ -31,50 +31,90 @@ let board = [];
 for (let i = 0; i < 9; i++) {
     board.push(new Array(9).fill(''));
 }
+    
+    let solutions = 0;
 
     let emptyCells;
     generateNew();
 
     let boardObj = {};
 
+    function createEmptyBoard()
+    {   
+        board = [];
+        
+        for (let i = 0; i < 9; i++) {
+            board.push(new Array(9).fill(''));
+            }        
+    }
+
     function generateNew()
     {
         // board = structuredClone(validSudoku);
+        createEmptyBoard(); 
 
         generateDiagonalBadges();
         solveBoard();
-        takeKunits_uniquely(20);
+        takeKunits_uniquely(25);
     }
 
-    function TakeKunits_uniquely(units)
+    function takeKunits_uniquely(units)
     {
-        let randomRow = [0,1,2,3,4,5,6,7,8];
-        let randomCol = [0,1,2,3,4,5,6,7,8];
+        let board1 = structuredClone(board); // to preserve the original 
+
+        let cellsArray = []; // 1d array;
+
+        for(let i = 0;i< 9;i++)
+        {
+            for(let j = 0;j < 9;j++)
+            {
+                let cell = {row : i,col : j};
+                cellsArray.push(cell); 
+            }
+        }
 
         for(let i = 0;i< units;i++)
         { // choose a random cell - > cache it - > make it empty - > check if the solver finds more solutions than 1 - > if more than 1 then we put that back and try another random number NOT that particular number  , if only 1 unique solution then move to the next and next till we exit out of the loop
+      
+            let randomIndex = Math.floor(Math.random() * cellsArray.length);
+
             let randomPos = {
-                row : randomRow[Math.floor(Math.random() * board.length)],
-                col : randomCol[Math.floor(Math.random() * randomCol.length)]};
+                row : cellsArray[randomIndex].row,
+                col : cellsArray[randomIndex].col};
         
+                board = structuredClone(board1);  
+            
             let chosenCell = board[randomPos.row][randomPos.col];
-            plot(randomPos.row,randomPos.col,'');
 
-            let N_of_solutions = countSolutions(); // this is the only missing piece now
+            plot(randomPos.row,randomPos.col,''); // make it read for emptyCells
+            
+            emptyCells = getEmptyCells();
+            plot(randomPos.row,randomPos.col,chosenCell); // replace it 
+            solutions = 0;
 
-            if(N_of_solutions > 1)
-            {
+            let isUnique = hasUniqueSolution(emptyCells[0],0); // this is the only missing piece now
+
+            if(!isUnique)
+            { // if removing the currentCell is impossible
                 plot(randomPos.row,randomPos.col,chosenCell); // replace it 
-                randomRow.splice(randomPos.row,1); // this works because each item's value in the array is represented by its own index 
-                randomCol.splice(randomPos.col,1);
+                board1[randomPos.row][randomPos.col] = chosenCell; // sync the local copy of board with the original
+
+                cellsArray.splice(randomIndex,1);
 
                 i--; // go back an iteration because we did not remove a unit .
                 continue;
-            }
+            }else
+            { // if it unique
+                // then that means that its safe to remove the current cell
 
-            // this is assuming that the other case is always going to be a unique solution .
+                board1[randomPos.row][randomPos.col] = '';
 
+                cellsArray.splice(randomIndex,1);
+                
+            }            
         }
+        
+        board = structuredClone(board1);
     }
 
     function generateDiagonalBadges()
@@ -203,7 +243,6 @@ function solveBoard(displayFn)
 {
     emptyCells = getEmptyCells();
     solve(emptyCells[0],0,displayFn);
-    console.log(board,emptyCells);
 }
 
 function solve(cell,currentIndex,displayFn) // < -- takes a cell in 
@@ -268,9 +307,97 @@ function solve(cell,currentIndex,displayFn) // < -- takes a cell in
     // console.log("outside");
 }
 
-function countSolutions()
-{
+function hasUniqueSolution(cell,currentIndex)
+{  
+    
+    // console.log(cell);
+    if(solutions > 1)
+    {
+        return false; // false meaning it does not have a unique solution!.
+    }
 
+    if(isFilled())
+    {
+        return "successfully solved";
+    }
+  
+    let nums = [1,2,3,4,5,6,7,8,9];
+    shuffle_arr(nums);
+
+    // for(let i of nums)
+    for(let i = 1;i <= 9;i++)
+    {
+
+        let currDigit = `${nums[i - 1]}`;
+
+        if(validChoice(cell.row,cell.col,currDigit))
+        {
+            // plot it do the next iteration.
+            plot(cell.row,cell.col,currDigit);
+            
+            let branchOutcome = solve(emptyCells[currentIndex + 1],currentIndex + 1);
+                // console.log(branchOutcome);
+            
+            if(branchOutcome === "successfully solved")
+            {
+                solutions++;
+                plot(cell.row,cell.col,'');
+                plot(emptyCells[currentIndex + 1].row,emptyCells[currentIndex + 1].col,''); 
+                
+                if(i  === 9)
+                { // backtrack
+                    return "failure";
+                }else
+                {
+                // reset the current cell + the following cells
+
+                    continue; 
+                }
+            }else if(branchOutcome === "failure")
+            {// backtrack! - > meaning reset the current Cell and continue
+                // console.log(branchOutcome);
+                plot(cell.row,cell.col,'');
+                
+                if(i === 9 && cell === emptyCells[0])
+                { // we have CHECKED All possible hypothesis
+                    break;
+                }
+
+                if(i === 9)
+                { // the possiblities of the current cell have ended hence another backtrack 
+                    return "failure";
+                }
+                continue;
+            }else if(branchOutcome === false)
+            { // we have found multiple solutions hence close the entire stack and return false 
+                return false;
+            }
+        }else
+        { // we check what kind of failure was it? basically we check the amount of possible digits for the currentCEll
+        // if the amount is more than 0 then we continue to the next iteration 
+        let amountOfPossibleChoices = getChoices(cell.row,cell.col);
+
+        if(amountOfPossibleChoices > 0)
+        {
+            if(i === 9)
+            { // meaning we have tried every choice on the curentCell so backtrack 
+                return "failure"; 
+            }
+            continue;
+        }else
+        {// backtrack
+            // console.log("failure!");
+            return "failure";
+        }
+        }
+        
+    }
+
+    if(solutions === 0)
+    { // there is no solution at all so removing cells will not happen
+        return false;
+    }
+    return true; // if we have passed all of the recursive calls then that means we found only one solution
 }
 
 function getChoices(row,col)
