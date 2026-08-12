@@ -92,18 +92,21 @@ function createBook(formattedVals)
     Books.push(new_book);   
 }
 
-function Book(inputData)
+class Book 
 {
+    constructor(inputData)
+    {
     this.author = inputData.author;
     this.title = inputData.title;
     this.pages = inputData.pages;
     this.read = inputData.read;
     this.id = crypto.randomUUID();
-}
-
-Book.prototype._read = function()
-{
+    }
+    
+    _read()
+    {
     this.read = !this.read; // inverse it - > change it to the opposite of it      
+    }
 }
 
 // book helper functions tbh this should be in one object but whatever 
