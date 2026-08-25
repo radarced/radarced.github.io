@@ -1,3 +1,5 @@
+import formManager from "./FormManager.js";
+
 let EL_references = {
     new_button : document.querySelector(".create-book"),
     books_container : document.querySelector(".booksContainer"),
@@ -14,6 +16,8 @@ let Books = [];
 window.onload = function()
 {
     appState.form = document.createElement("form");
+    appState.form.noValidate = true; // cuz all constraint validation are going to done with pure JS
+
     appState.form.className = "Modal";
     let ModalHTML = `<div class="modal-1">
         <label for="author">Author name :         
@@ -30,11 +34,21 @@ window.onload = function()
         </label>
         <label for="bookRead" id="modal-2-2">Book read? &nbsp
         <input type="checkbox" name="read" id="bookRead" value="true">
-        </label>
+        </label> 
         </div>
         <button type="submit" id="modal-submitBtn">Submit</button>`;
     appState.form.insertAdjacentHTML("beforeend",ModalHTML);
     let submitButton = appState.form.children[2];
+
+    let formControls = {
+        authorControl : appState.form.querySelector("#author"),
+        titleControl : appState.form.querySelector("#title"),
+        pageControl : appState.form.querySelector("#pages"),
+    };
+
+    formControls.authorControl.addEventListener("input",formManager.authorHandler);
+    formControls.titleControl.addEventListener("input",formManager.titleHandler);
+    formControls.pageControl.addEventListener("input",formManager.pageHandler);
 
     appState.form.addEventListener("submit",submitNew); // when the data is submitted(aka validated) THEN you take the input preventDefault and all that jazz
     addEventHandlers();
@@ -47,10 +61,25 @@ function displayModal()
         appState.new_buttonClicked = true;
     }else
     { // if it is already clicked
+        closeForm();
         return ;
     }
     // Create the Modal - > append the constituents - > append the Modal
     EL_references.body.appendChild(appState.form);
+}
+
+function resetForm()
+{
+    let authorControl = appState.form.querySelector("#author");
+    let titleControl = appState.form.querySelector("#title");
+    let pageControl = appState.form.querySelector("#pages");
+    let readControl = appState.form.querySelector("#bookRead");
+
+    authorControl.value = "";
+    titleControl.value = "";
+    pageControl.value = "";
+    readControl.checked = false;
+
 }
 
 function closeForm()
@@ -72,6 +101,10 @@ function addEventHandlers()
 function submitNew(e)
 {
     e.preventDefault();
+    if(!(formManager.isValid()))
+    {
+        return ;
+    }
 
     // format Input 
     let formData = new FormData(e.target);  // this constructor function does not give you a standard object representation of your form controls values this is desgined like so cuz of flexiblity 
@@ -80,6 +113,8 @@ function submitNew(e)
 
     createBook(formattedVals);
     
+    formManager.resetValidities();
+    resetForm();
     closeForm();
 
 
